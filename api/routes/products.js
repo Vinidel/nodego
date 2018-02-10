@@ -8,8 +8,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  const product = req.body;
   res.status(201).json({
-    message: 'Creating a product'
+    message: 'Creating a product',
+    product
   });
 });
 
