@@ -12,8 +12,13 @@ function createProduct(req, res) {
   return product.save()
     .then((data) => {
       res.status(201).json({
-        message: 'Creating a product',
-        product : data
+        name: data.name,
+        price: data.price,
+        _id: data._id,
+        request: {
+          type: 'GET',
+          url: `http://localhost:3000/products/${data._id}`
+        }
       });
     })
     .catch((err) => {

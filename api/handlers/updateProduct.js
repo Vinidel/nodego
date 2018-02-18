@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/product');
 
 function updateProduct(req, res) {
-  const {id, name, price} = req.params;
+  const {id} = req.params;
   const updateOps = {};
 
   for(const ops of req.body) {
@@ -15,7 +15,12 @@ function updateProduct(req, res) {
     .exec()
     .then(product => {
       res.status(200).json({
-        product
+        message: 'Updated',
+        request: {
+          type: 'GET',
+          url: `http://localhost:3000/products/${id}`
+        }
+
       });
     })
     .catch(err => {
