@@ -1,44 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Order = require('../models/order');
+const Product = require('../models/product');
+const createOrder = require('../handlers/createOrder');
+const getOrders = require('../handlers/getOrders');
+const getOrderDetails = require('../handlers/getOrderDetails');
+const deleteOrder = require('../handlers/deleteOrder');
 
-router.get('/', (req, res) => {
-  const {id} = req.params;
-  res.status(200).json({
-    message: 'A list of orders'
-  });
-});
-
-router.get('/:id', (req, res) => {
-  const {id} = req.params;
-  res.status(200).json({
-    message: 'Order details',
-    id
-  });
-});
-
-
-router.post('/', (req, res) => {
-  const {id} = req.params;
-  res.status(201).json({
-    message: 'Order created'
-  });
-});
-
-router.patch('/:id', (req, res) => {
-  const {id} = req.params;
-  res.status(200).json({
-    message: `Order ${id} updated`,
-    id
-  });
-});
-
-router.delete('/:id', (req, res) => {
-  const {id} = req.params;
-  res.status(200).json({
-    message: `Order ${id} deleted`,
-    id
-  });
-});
-
+router.get('/', getOrders);
+router.get('/:id', getOrderDetails);
+router.post('/', createOrder);
+router.delete('/:id', deleteOrder);
 
 module.exports = router;
