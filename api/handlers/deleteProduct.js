@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Order = require('../models/order');
 
 function deleteProduct(req, res) {
@@ -11,7 +12,6 @@ function deleteProduct(req, res) {
       });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({message: 'Something went wrong'});
     });
 }
