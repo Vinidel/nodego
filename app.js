@@ -34,6 +34,17 @@ app.use((req, res, next) => {
 //Logging
 app.use(morgan('dev'));
 
+app.get('/sup', (req, res) => {
+  res.status(200).json({message: 'Whats up'});
+});
+
+//Auth
+app.use((req, res, next) => {
+  //this must be used to handle all authentication for the api
+  console.log('Heyyyyy yeah');
+  next();
+});
+
 //Routes
 app.use('/products', productRoute);
 app.use('/orders', orderRoute);
