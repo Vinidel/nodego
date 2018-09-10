@@ -7,11 +7,12 @@ const getProducts = require('../handlers/getProducts');
 const getProductDetails = require('../handlers/getProductDetails');
 const updateProduct = require('../handlers/updateProduct');
 const deleteProduct = require('../handlers/deleteProduct');
+const checkAuth = require('../middleware/check-auth');
 
 router.get('/', getProducts);
-router.post('/', createProduct);
+router.post('/', checkAuth, createProduct);
 router.get('/:id', getProductDetails);
-router.patch('/:id', updateProduct);
-router.delete('/:id', deleteProduct);
+router.patch('/:id', checkAuth, updateProduct);
+router.delete('/:id', checkAuth, deleteProduct);
 
 module.exports = router;

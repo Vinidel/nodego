@@ -1,5 +1,6 @@
 {
   "env": {
-    "MONGO_ATLAS_PW": "vinidroid"
+    "MONGO_ATLAS_PW": "vinidroid",
+    "JWT_KEY":"secret"
   }
 }

@@ -50,6 +50,11 @@ app.use('/products', productRoute);
 app.use('/orders', orderRoute);
 app.use('/users', userRoute);
 
+
+app.get('/btc-price', (req, res) => {
+  console.log('hereeee');
+  res.status(200).json({BTC: {USD: '2000.00'}});
+});
 //Error handling
 app.use((req, res, next) => {
   const error = new Error('Not found');

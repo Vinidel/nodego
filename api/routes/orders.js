@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Order = require('../models/order');
-const Product = require('../models/product');
 const createOrder = require('../handlers/createOrder');
 const getOrders = require('../handlers/getOrders');
 const getOrderDetails = require('../handlers/getOrderDetails');
 const deleteOrder = require('../handlers/deleteOrder');
+const checkAuth = require('../middleware/check-auth');
 
-router.get('/', getOrders);
-router.get('/:id', getOrderDetails);
-router.post('/', createOrder);
-router.delete('/:id', deleteOrder);
+router.get('/', checkAuth, getOrders);
+router.get('/:id', checkAuth, getOrderDetails);
+router.post('/', checkAuth, createOrder);
+router.delete('/:id', checkAuth, deleteOrder);
 
 module.exports = router;
