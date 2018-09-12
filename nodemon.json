@@ -1,6 +1,7 @@
 {
   "env": {
     "MONGO_ATLAS_PW": "vinidroid",
-    "JWT_KEY":"secret"
+    "JWT_KEY":"secret",
+    "PORT": 8081
   }
 }
