@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const productRoute = require('./api/routes/products');
 const orderRoute = require('./api/routes/orders');
 const userRoute = require('./api/routes/users');
+const cors = require('cors');
 const app = express();
 
 //DB
@@ -19,17 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //CORS
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-
-  if(req.method == 'OPTIONS') {
-    req.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    res.status(200).json({});
-  }
-
-  next();
-});
+app.use(cors());
 
 //Logging
 app.use(morgan('dev'));
