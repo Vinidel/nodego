@@ -6,4 +6,4 @@ module.exports.generateToken = ({email, userId} = {}) => {
   });
 
   return token;
-}
+};

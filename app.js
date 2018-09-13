@@ -9,11 +9,11 @@ const cors = require('cors');
 const app = express();
 
 //DB
-mongoose
-  // .connect(`mongodb://node-shop:${process.env.MONGO_ATLAS_PW}@node-rest-shop-shard-00-00-vwzbq.mongodb.net:27017,node-rest-shop-shard-00-01-vwzbq.mongodb.net:27017,node-rest-shop-shard-00-02-vwzbq.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin`)
-  .connect(`mongodb://localhost/node-shop`)
-  .then(() => console.log('Success'))
-  .catch(err => console.log('Not connected to DB', err.errors[0].err));
+// mongoose
+//   .connect(`mongodb://node-shop-api:${process.env.MONGO_KEY}@node-shop-cluster-shard-00-00-9weg9.mongodb.net:27017,node-shop-cluster-shard-00-01-9weg9.mongodb.net:27017,node-shop-cluster-shard-00-02-9weg9.mongodb.net:27017/test?ssl=true&replicaSet=node-shop-cluster-shard-0&authSource=admin&retryWrites=true`)
+//   // .connect(`mongodb://localhost/node-shop`)
+//   .then(() => console.log('DB connected Successfully'))
+//   .catch(err => console.log('Not connected to DB', err.errors[0].err));
 
 //Data parser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -32,7 +32,7 @@ app.get('/sup', (req, res) => {
 //Auth
 app.use((req, res, next) => {
   //this must be used to handle all authentication for the api
-  console.log('Heyyyyy yeah');
+  // console.log('Heyyyyy yeah');
   next();
 });
 
