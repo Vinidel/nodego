@@ -2,6 +2,7 @@
   "env": {
     "MONGO_ATLAS_PW": "vinidroid",
     "JWT_KEY":"secret",
-    "PORT": 8081
+    "PORT": 8081,
+    "CONNECTION_STRING": "mongodb://localhost/node-shop"
   }
 }

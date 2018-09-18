@@ -8,13 +8,6 @@ const userRoute = require('./api/routes/users');
 const cors = require('cors');
 const app = express();
 
-//DB
-mongoose
-  // .connect(`mongodb://node-shop-api:${process.env.MONGO_KEY}@node-shop-cluster-shard-00-00-9weg9.mongodb.net:27017,node-shop-cluster-shard-00-01-9weg9.mongodb.net:27017,node-shop-cluster-shard-00-02-9weg9.mongodb.net:27017/test?ssl=true&replicaSet=node-shop-cluster-shard-0&authSource=admin&retryWrites=true`)
-  .connect(`mongodb://localhost/node-shop`)
-  .then(() => console.log('DB connected Successfully'))
-  .catch(err => console.log('Not connected to DB', err.errors[0].err));
-
 //Data parser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
