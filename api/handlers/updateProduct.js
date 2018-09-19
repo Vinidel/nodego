@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product');
 
+const baseUrl = process.env.BASE_URL;
+
 function updateProduct(req, res) {
   const {id} = req.params;
   const updateOps = {};
@@ -18,7 +20,7 @@ function updateProduct(req, res) {
         message: 'Updated',
         request: {
           type: 'GET',
-          url: `http://localhost:3000/products/${id}`
+          url: `${baseUrl}/products/${id}`
         }
 
       });

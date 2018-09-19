@@ -1,4 +1,5 @@
 const Order = require('../models/order');
+const baseUrl = process.env.BASE_URL;
 
 function parseOrdersToResponse(orders) {
   return orders.map(order => {
@@ -8,7 +9,7 @@ function parseOrdersToResponse(orders) {
       product: order.productId,
       request: {
         type: 'GET',
-        url: `http://localhost:3000/orders/${order._id}`
+        url: `${baseUrl}/orders/${order._id}`
       }
     };
   });

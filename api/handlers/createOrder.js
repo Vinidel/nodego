@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Order = require('../models/order');
 const Product = require('../models/product');
 
+const baseUrl = process.env.BASE_URL;
+
 function checkIfProductExists(id) {
   return Product
     .findById(id)
@@ -32,7 +34,7 @@ function createOrder(req, res) {
           order,
           request: {
             type: 'GET',
-            url: `http://localhost:3000/orders/${order._id}`
+            url: `${baseUrl}/orders/${order._id}`
           }
         });
       })

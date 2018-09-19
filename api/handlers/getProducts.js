@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product');
 
+const baseUrl = process.env.BASE_URL;
+
 function getProducts(req, res) {
   return Product.find()
   .select('name price _id')
@@ -15,7 +17,7 @@ function getProducts(req, res) {
             _id: p._id,
             request: {
               type: 'GET',
-              url: `http://localhost:3000/products/${p._id}`
+              url: `${baseUrl}/products/${p._id}`
             }
           }))
         });

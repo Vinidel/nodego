@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product');
 
+const baseUrl = process.env.BASE_URL;
+
 function createProduct(req, res) {
   const {name, price} = req.body;
   const product = new Product({
@@ -17,7 +19,7 @@ function createProduct(req, res) {
         _id: data._id,
         request: {
           type: 'GET',
-          url: `http://localhost:3000/products/${data._id}`
+          url: `${baseUrl}/products/${data._id}`
         }
       });
     })
