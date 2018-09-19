@@ -31,6 +31,7 @@ function signUp(req, res) {
           .then((result) => {
             const token = generateToken({email: result.email, userId: result.id});
             res.status(200).json({
+              email: result.email,
               token,
               message: 'User created'
             });
