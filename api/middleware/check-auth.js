@@ -1,12 +1,21 @@
 const jwt = require('jsonwebtoken');
+const Token = require('../models/token');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
+
   try {
-    const decoded = jwt.verify(req.header('Authorization').split(" ")[1], process.env.JWT_KEY);
-    req.userData = decoded;
-    next();
+    const token = req.header('Authorization').split(" ")[1];
+    const dbData = await Token.find({token}).exec();
+    if (dbData.length) {
+      const decoded = jwt.verify(dbData[0].token, process.env.JWT_KEY);
+      req.userData = decoded;
+      return next();
+    } else {
+      return res.status(401).json({message: 'Auth failed'});
+    }
   } catch (error) {
-    res.status(401).json({message: 'Auth failed'});
+    console.log('Auth check error', error);
+    res.status(500).json({message: 'Ooops'});
   }
 
 };
