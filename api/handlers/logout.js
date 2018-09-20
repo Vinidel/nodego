@@ -2,9 +2,9 @@ const User = require('../models/user');
 const Token = require('../models/token');
 
 function logout(req, res) {
-  const httpToken = req.body.token;
+  const httpToken = req.header('Authorization').split(" ")[1];
    Token.findOneAndRemove({token: httpToken}).exec()
-    .then(data => {
+    .then(() => {
       res.status(200).json({message: 'Successfully logged out'});
     })
     .catch(error => {
