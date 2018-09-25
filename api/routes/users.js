@@ -4,7 +4,7 @@ const signUp = require('../handlers/signUp');
 const deleteUser = require('../handlers/deleteUser');
 const login = require('../handlers/login');
 const logoutUser = require('../handlers/logout');
-const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../middleware/checkAuth');
 
 router.post('/signup', signUp);
 router.post('/login', login);

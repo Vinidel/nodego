@@ -7,7 +7,7 @@ const getProducts = require('../handlers/getProducts');
 const getProductDetails = require('../handlers/getProductDetails');
 const updateProduct = require('../handlers/updateProduct');
 const deleteProduct = require('../handlers/deleteProduct');
-const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../middleware/checkAuth');
 
 router.get('/', getProducts);
 router.post('/', checkAuth, createProduct);
