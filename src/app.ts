@@ -1,11 +1,10 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const productRoute = require('./api/routes/products');
-const orderRoute = require('./api/routes/orders');
-const userRoute = require('./api/routes/users');
-const cors = require('cors');
+import express, { Response, Request, NextFunction } from "express";
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+const productRoute = require('./routes/products');
+const orderRoute = require('./routes/orders');
+const userRoute = require('./routes/users');
 const app = express();
 
 //Data parser
@@ -18,12 +17,12 @@ app.use(cors());
 //Logging
 app.use(morgan('dev'));
 
-app.get('/sup', (req, res) => {
+app.get('/sup', (req: Request, res: Response) => {
   res.status(200).json({message: 'Whats up'});
 });
 
 //Auth
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   //this must be used to handle all authentication for the api
   // console.log('Heyyyyy yeah');
   next();
@@ -34,19 +33,14 @@ app.use('/products', productRoute);
 app.use('/orders', orderRoute);
 app.use('/users', userRoute);
 
-
-app.get('/btc-price', (req, res) => {
-  console.log('hereeee');
-  res.status(200).json({BTC: {USD: '2000.00'}});
-});
 //Error handling
-app.use((req, res, next) => {
-  const error = new Error('Not found');
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const error =  new Error('Not found');
   error.status = 404;
   next(error);
 });
 
-app.use((error, req, res, next) => {
+app.use((error: { status: number; message: String; }, req: Request, res: Response, next: NextFunction) => {
   res
   .status(error.status || 500)
   .json({error: {
