@@ -40,7 +40,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next(error);
 });
 
-app.use((error: { status: number; message: String; }, req: Request, res: Response, next: NextFunction) => {
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   res
   .status(error.status || 500)
   .json({error: {
