@@ -49,4 +49,4 @@ app.use((error: { status: number; message: String; }, req: Request, res: Respons
   });
 });
 
-module.exports = app;
+export default app;
